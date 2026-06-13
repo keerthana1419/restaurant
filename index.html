@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bella Cucina - Restaurant Menu</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <i class="fas fa-utensils"></i>
+        <span>Bella Cucina</span>
+      </div>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="cart-btn" onclick="toggleCart()">
+        <i class="fas fa-shopping-basket"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="hamburger" onclick="toggleNav()"><i class="fas fa-bars"></i></button>
+    </div>
+    <!-- Mobile Nav -->
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#home" onclick="toggleNav()">Home</a>
+      <a href="#menu" onclick="toggleNav()">Menu</a>
+      <a href="#about" onclick="toggleNav()">About</a>
+      <a href="#contact" onclick="toggleNav()">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-tag">Fine Dining Experience</p>
+      <h1>Taste the Art of<br/><span>Italian Cuisine</span></h1>
+      <p class="hero-sub">Handcrafted dishes made with the freshest ingredients,<br/>bringing the soul of Italy to your table.</p>
+      <div class="hero-btns">
+        <a href="#menu" class="btn-primary">Explore Menu</a>
+        <a href="#about" class="btn-outline">Our Story</a>
+      </div>
+    </div>
+    <div class="hero-badge">
+      <span class="badge-top">Est.</span>
+      <span class="badge-year">1998</span>
+      <span class="badge-bottom">Milano</span>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="stat-item">
+      <i class="fas fa-utensils"></i>
+      <h3>120+</h3>
+      <p>Menu Items</p>
+    </div>
+    <div class="stat-item">
+      <i class="fas fa-users"></i>
+      <h3>50K+</h3>
+      <p>Happy Guests</p>
+    </div>
+    <div class="stat-item">
+      <i class="fas fa-award"></i>
+      <h3>15+</h3>
+      <p>Awards Won</p>
+    </div>
+    <div class="stat-item">
+      <i class="fas fa-clock"></i>
+      <h3>25+</h3>
+      <p>Years of Service</p>
+    </div>
+  </section>
+
+  <!-- MENU SECTION -->
+  <section class="menu-section" id="menu">
+    <div class="section-header">
+      <p class="section-tag">Our Specialties</p>
+      <h2>Explore Our Menu</h2>
+      <p class="section-sub">Each dish is a masterpiece — crafted with love, tradition, and the finest ingredients.</p>
+    </div>
+
+    <!-- Search -->
+    <div class="search-bar">
+      <i class="fas fa-search"></i>
+      <input type="text" id="searchInput" placeholder="Search dishes..." oninput="filterMenu()" />
+    </div>
+
+    <!-- Category Filter -->
+    <div class="category-pills">
+      <button class="pill active" onclick="filterCategory('all', this)">All</button>
+      <button class="pill" onclick="filterCategory('starters', this)">🥗 Starters</button>
+      <button class="pill" onclick="filterCategory('pasta', this)">🍝 Pasta</button>
+      <button class="pill" onclick="filterCategory('pizza', this)">🍕 Pizza</button>
+      <button class="pill" onclick="filterCategory('mains', this)">🥩 Mains</button>
+      <button class="pill" onclick="filterCategory('desserts', this)">🍮 Desserts</button>
+      <button class="pill" onclick="filterCategory('drinks', this)">🍹 Drinks</button>
+    </div>
+
+    <!-- Diet Filter -->
+    <div class="diet-pills">
+      <button class="diet-pill active" onclick="filterDiet('all', this)">All</button>
+      <button class="diet-pill" onclick="filterDiet('veg', this)"><span class="veg-dot"></span>Vegetarian</button>
+      <button class="diet-pill" onclick="filterDiet('vegan', this)">🌱 Vegan</button>
+      <button class="diet-pill" onclick="filterDiet('spicy', this)">🌶️ Spicy</button>
+      <button class="diet-pill" onclick="filterDiet('popular', this)">⭐ Popular</button>
+    </div>
+
+    <!-- Menu Grid -->
+    <div class="menu-grid" id="menuGrid"></div>
+    <p class="no-results" id="noResults" style="display:none">No dishes found. Try a different search!</p>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-section" id="about">
+    <div class="about-img">
+      <div class="about-img-inner">🍝</div>
+    </div>
+    <div class="about-content">
+      <p class="section-tag">Our Story</p>
+      <h2>A Legacy of Flavor Since 1998</h2>
+      <p>Bella Cucina was born from a simple dream — to bring the authentic warmth of Italian home cooking to the world. Founded in Milano by Chef Marco Rossi, our restaurant has been a gathering place for food lovers for over 25 years.</p>
+      <p>Every recipe has been passed down through generations, refined with modern techniques but never losing the soul of traditional Italian cuisine.</p>
+      <div class="about-features">
+        <div class="feature"><i class="fas fa-leaf"></i><span>Fresh Ingredients Daily</span></div>
+        <div class="feature"><i class="fas fa-fire"></i><span>Wood-Fired Oven</span></div>
+        <div class="feature"><i class="fas fa-wine-glass"></i><span>Curated Wine List</span></div>
+        <div class="feature"><i class="fas fa-heart"></i><span>Made with Love</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="section-header">
+      <p class="section-tag">Reviews</p>
+      <h2>What Our Guests Say</h2>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"The best pasta I've ever had outside of Italy. Truly authentic flavors that transport you to Rome!"</p>
+        <div class="reviewer"><div class="avatar">S</div><div><strong>Sarah M.</strong><span>Food Blogger</span></div></div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"Bella Cucina never disappoints. The wood-fired pizza is absolutely divine. A must-visit!"</p>
+        <div class="reviewer"><div class="avatar">J</div><div><strong>James K.</strong><span>Regular Guest</span></div></div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"Incredible ambiance, exceptional service, and food that makes you want to come back every week."</p>
+        <div class="reviewer"><div class="avatar">A</div><div><strong>Aisha R.</strong><span>Food Critic</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="section-header">
+      <p class="section-tag">Visit Us</p>
+      <h2>Find Us & Get in Touch</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="info-item"><i class="fas fa-map-marker-alt"></i><div><strong>Address</strong><p>123 Rosemary Lane, Little Italy, New York, NY 10013</p></div></div>
+        <div class="info-item"><i class="fas fa-clock"></i><div><strong>Hours</strong><p>Mon–Thu: 11am – 10pm<br/>Fri–Sun: 11am – 11pm</p></div></div>
+        <div class="info-item"><i class="fas fa-phone"></i><div><strong>Phone</strong><p>+1 (212) 555-0198</p></div></div>
+        <div class="info-item"><i class="fas fa-envelope"></i><div><strong>Email</strong><p>hello@bellacucina.com</p></div></div>
+      </div>
+      <form class="contact-form" onsubmit="submitForm(event)">
+        <h3>Make a Reservation</h3>
+        <div class="form-row">
+          <input type="text" placeholder="Your Name" required />
+          <input type="email" placeholder="Email Address" required />
+        </div>
+        <div class="form-row">
+          <input type="date" required />
+          <select required>
+            <option value="">Guests</option>
+            <option>1 Person</option>
+            <option>2 People</option>
+            <option>3-4 People</option>
+            <option>5+ People</option>
+          </select>
+        </div>
+        <textarea placeholder="Special requests..." rows="3"></textarea>
+        <button type="submit" class="btn-primary">Reserve a Table</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo"><i class="fas fa-utensils"></i><span>Bella Cucina</span></div>
+        <p>Bringing the heart of Italy to your table, one dish at a time.</p>
+        <div class="socials">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <a href="#home">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-links">
+        <h4>Menu</h4>
+        <a href="#">Starters</a>
+        <a href="#">Pasta & Pizza</a>
+        <a href="#">Main Course</a>
+        <a href="#">Desserts</a>
+      </div>
+      <div class="footer-links">
+        <h4>Info</h4>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Careers</a>
+        <a href="#">Gift Cards</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Bella Cucina. All rights reserved. Made with <i class="fas fa-heart" style="color:#e11d48"></i></p>
+    </div>
+  </footer>
+
+  <!-- CART SIDEBAR -->
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3><i class="fas fa-shopping-basket"></i> Your Order</h3>
+      <button onclick="toggleCart()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="empty-cart"><i class="fas fa-utensils"></i><p>Your basket is empty</p></div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="cart-total">
+        <span>Subtotal</span><span id="cartSubtotal">$0.00</span>
+      </div>
+      <div class="cart-total">
+        <span>Tax (8%)</span><span id="cartTax">$0.00</span>
+      </div>
+      <div class="cart-total total-line">
+        <span>Total</span><span id="cartTotal">$0.00</span>
+      </div>
+      <button class="btn-primary checkout-btn" onclick="checkout()">Place Order <i class="fas fa-arrow-right"></i></button>
+      <button class="btn-clear" onclick="clearCart()">Clear All</button>
+    </div>
+  </div>
+
+  <!-- ITEM DETAIL MODAL -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
+  <div class="item-modal" id="itemModal">
+    <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+    <div class="modal-img" id="modalEmoji"></div>
+    <div class="modal-body">
+      <div class="modal-badges" id="modalBadges"></div>
+      <h2 id="modalName"></h2>
+      <p class="modal-desc" id="modalDesc"></p>
+      <div class="modal-meta">
+        <span><i class="fas fa-clock"></i> <span id="modalTime"></span></span>
+        <span><i class="fas fa-fire"></i> <span id="modalCal"></span></span>
+        <span><i class="fas fa-star" style="color:#f59e0b"></i> <span id="modalRating"></span></span>
+      </div>
+      <div class="modal-price-row">
+        <span class="modal-price" id="modalPrice"></span>
+        <div class="qty-control">
+          <button onclick="changeQty(-1)">−</button>
+          <span id="modalQty">1</span>
+          <button onclick="changeQty(1)">+</button>
+        </div>
+      </div>
+      <button class="btn-primary add-to-cart-btn" onclick="addFromModal()">
+        <i class="fas fa-plus"></i> Add to Order
+      </button>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
